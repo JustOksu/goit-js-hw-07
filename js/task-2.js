@@ -26,7 +26,6 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
-gallery.classList.add("flex-box");
 gallery.style.listStyleType = "none";
 
 images.forEach((image) => {
