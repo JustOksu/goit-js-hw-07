@@ -6,31 +6,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   createBtn.addEventListener("click", function () {
     const amount = parseInt(input.value);
-    boxesContainer.innerHTML = "";
-    createBoxes(boxesContainer, amount);
-    input.value = "";
+    if (amount >= 1 && amount <= 100) {
+      createBoxes(amount);
+      input.value = "";
+    }
   });
 
   destroyBtn.addEventListener("click", function () {
-    destroyBoxes(boxesContainer);
+    destroyBoxes();
   });
 });
 
-function createBoxes(container, amount) {
-  let size = 30;
+function createBoxes(amount) {
+  const boxesContainer = document.getElementById("boxes");
+  boxesContainer.innerHTML = "";
 
+  let size = 30;
   for (let i = 0; i < amount; i++) {
     const box = document.createElement("div");
     box.style.width = `${size}px`;
     box.style.height = `${size}px`;
     box.style.backgroundColor = getRandomHexColor();
-    container.appendChild(box);
+    boxesContainer.appendChild(box);
     size += 10;
   }
 }
 
-function destroyBoxes(container) {
-  container.innerHTML = "";
+function destroyBoxes() {
+  const boxesContainer = document.getElementById("boxes");
+  boxesContainer.innerHTML = "";
 }
 
 function getRandomHexColor() {
