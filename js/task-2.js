@@ -28,13 +28,10 @@ const images = [
 const gallery = document.querySelector(".gallery");
 gallery.style.listStyleType = "none";
 
+let galleryHTML = "";
+
 images.forEach((image) => {
-  const img = document.createElement("img");
-  img.src = image.url;
-  img.alt = image.alt;
-  img.style.width = "50vw";
-  img.style.height = "auto";
-  const listItem = document.createElement("li");
-  listItem.appendChild(img);
-  gallery.appendChild(listItem);
+  galleryHTML += `<li><img src="${image.url}" alt="${image.alt}" style="width: 50vw; height: auto;"></li>`;
 });
+
+gallery.insertAdjacentHTML("beforeend", galleryHTML);
