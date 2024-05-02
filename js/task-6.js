@@ -7,21 +7,27 @@ document.addEventListener("DOMContentLoaded", function () {
   createBtn.addEventListener("click", function () {
     const amount = parseInt(input.value);
     if (amount >= 1 && amount <= 100) {
-      createBoxes(amount);
+      manipulateBoxes(amount);
       input.value = "";
     }
   });
 
   destroyBtn.addEventListener("click", function () {
-    destroyBoxes();
+    manipulateBoxes(0);
   });
 });
 
-function createBoxes(amount) {
+function manipulateBoxes(amount) {
   const boxesContainer = document.getElementById("boxes");
-  const fragment = document.createDocumentFragment();
 
+  if (amount === 0) {
+    boxesContainer.innerHTML = "";
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
   let size = 30;
+
   for (let i = 0; i < amount; i++) {
     const box = document.createElement("div");
     box.style.width = `${size}px`;
@@ -32,11 +38,6 @@ function createBoxes(amount) {
   }
 
   boxesContainer.appendChild(fragment);
-}
-
-function destroyBoxes() {
-  const boxesContainer = document.getElementById("boxes");
-  boxesContainer.innerHTML = "";
 }
 
 function getRandomHexColor() {
